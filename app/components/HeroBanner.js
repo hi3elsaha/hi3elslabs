@@ -1,78 +1,74 @@
 "use client"
-
 import { useEffect } from "react"
 import gsap from "gsap"
 import { TextPlugin } from "gsap/TextPlugin"
-import HeroBanner from "./components/HeroBanner"   // ✅ Import এখানে
 
 gsap.registerPlugin(TextPlugin)
 
-export default function HomePage() {
+export default function HeroBanner() {
   useEffect(() => {
-    // Section reveal animation
-    gsap.utils.toArray(".section").forEach((sec) => {
-      gsap.from(sec, {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        scrollTrigger: { trigger: sec, start: "top 80%" }
-      })
+    // Floating blobs
+    gsap.to("#blob1", {
+      duration: 6,
+      scale: 1.1,
+      yoyo: true,
+      repeat: -1,
+      ease: "sine.inOut",
+    })
+    gsap.to("#blob2", {
+      duration: 8,
+      x: 30,
+      yoyo: true,
+      repeat: -1,
+      ease: "sine.inOut",
+    })
+
+    // Title fade-in
+    gsap.from(".hero-title", {
+      opacity: 0,
+      y: 50,
+      duration: 1.5,
+      ease: "power3.out",
+    })
+
+    // Subtitle typewriter effect
+    gsap.to(".hero-subtitle", {
+      duration: 3,
+      text: "Crafting premium digital experiences ✨",
+      ease: "none",
+      delay: 1,
     })
   }, [])
 
   return (
-    <div className="space-y-32">
-      {/* ✅ Hero Banner */}
-      <HeroBanner />
+    <section className="relative flex items-center justify-center min-h-screen overflow-hidden bg-slate-900">
+      {/* Background SVG */}
+      <svg
+        viewBox="0 0 1200 500"
+        xmlns="http://www.w3.org/2000/svg"
+        className="absolute inset-0 w-full h-full"
+      >
+        <defs>
+          <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#0ea5e9" />
+            <stop offset="100%" stopColor="#6366f1" />
+          </linearGradient>
+        </defs>
+        <rect width="1200" height="500" fill="url(#grad)" />
+        <circle id="blob1" cx="250" cy="150" r="180" fill="#22d3ee" opacity="0.25" />
+        <circle id="blob2" cx="950" cy="350" r="160" fill="#8b5cf6" opacity="0.25" />
+      </svg>
 
-      {/* About Section */}
-      <section id="about" className="section max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-4 text-cyan-300">About Us</h2>
-        <p className="text-slate-300 leading-relaxed">
-          Hi3els Labs is a creative digital studio blending storytelling, animation, and technology.  
-          We believe in expressive design that feels alive, memorable, and premium.
-        </p>
-      </section>
-
-      {/* Projects Section */}
-      <section id="projects" className="section max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-8 text-cyan-300">Projects</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-slate-800 rounded-lg p-6 hover:scale-105 transition shadow-lg">
-            <img src="/images/products/product1.png" alt="Project 1" className="rounded mb-4" />
-            <h3 className="font-semibold text-lg">Project One</h3>
-            <p className="text-slate-400 text-sm">Interactive branding with animation.</p>
-          </div>
-          <div className="bg-slate-800 rounded-lg p-6 hover:scale-105 transition shadow-lg">
-            <img src="/images/products/product2.png" alt="Project 2" className="rounded mb-4" />
-            <h3 className="font-semibold text-lg">Project Two</h3>
-            <p className="text-slate-400 text-sm">Premium web experience with GSAP.</p>
-          </div>
-          <div className="bg-slate-800 rounded-lg p-6 hover:scale-105 transition shadow-lg">
-            <img src="/images/team/member1.png" alt="Project 3" className="rounded mb-4" />
-            <h3 className="font-semibold text-lg">Project Three</h3>
-            <p className="text-slate-400 text-sm">Storytelling through expressive design.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="section max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-4 text-cyan-300">Contact Us</h2>
-        <form className="bg-slate-800 p-6 rounded-lg shadow-lg space-y-4">
-          <input type="text" placeholder="Your Name" className="w-full p-3 rounded bg-slate-900 text-white" />
-          <input type="email" placeholder="Your Email" className="w-full p-3 rounded bg-slate-900 text-white" />
-          <textarea placeholder="Your Message" className="w-full p-3 rounded bg-slate-900 text-white"></textarea>
-          <button className="px-6 py-3 bg-cyan-500 text-black font-bold rounded-lg hover:scale-105 hover:bg-cyan-400 transition">
-            Send Message
-          </button>
-        </form>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-slate-900 py-6 text-center text-slate-400">
-        <p>© {new Date().getFullYear()} Hi3els Labs. All rights reserved.</p>
-      </footer>
-    </div>
+      {/* Hero Content */}
+      <div className="relative z-10 text-center px-4">
+        <h1 className="hero-title text-5xl md:text-7xl font-extrabold text-white drop-shadow-lg">
+          Hi3els Labs
+        </h1>
+        <p className="hero-subtitle mt-4 text-xl md:text-2xl text-slate-200"></p>
+        <button className="mt-8 px-8 py-3 bg-cyan-500 text-black font-bold rounded-lg hover:scale-105 hover:bg-cyan-400 transition">
+          Explore Lab
+        </button>
+      </div>
+    </section>
   )
 }
