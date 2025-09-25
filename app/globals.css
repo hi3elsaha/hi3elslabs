@@ -4,6 +4,6 @@
 
 /* Custom global styles */
 body {
-  background: #0f172a; /* dark slate */
-  color: white;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
