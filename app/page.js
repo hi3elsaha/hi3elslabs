@@ -3,7 +3,7 @@
 import { useEffect } from "react"
 import gsap from "gsap"
 import { TextPlugin } from "gsap/TextPlugin"
-import HeroBanner from "./components/HeroBanner"   // ✅ Import এখানে
+import HeroBanner from "./components/HeroBanner"   // ✅ HeroBanner import
 
 gsap.registerPlugin(TextPlugin)
 
