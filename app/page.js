@@ -18,7 +18,7 @@ export default function HomePage() {
 
   return (
     <div className="space-y-32">
-      {/* Hero Section */}
+      {import HeroBanner from "./components/HeroBanner"}
       <section className="flex flex-col items-center justify-center min-h-screen text-center">
         <h1 className="hero-title text-5xl md:text-7xl font-extrabold mb-4 text-cyan-400">
           Welcome to Hi3els Lab 🚀
