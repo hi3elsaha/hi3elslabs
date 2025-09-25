@@ -1,74 +1,35 @@
-"use client"
-import { useEffect } from "react"
-import gsap from "gsap"
-import { TextPlugin } from "gsap/TextPlugin"
-
-gsap.registerPlugin(TextPlugin)
+import { useEffect } from "react";
+import { gsap } from "gsap";
 
 export default function HeroBanner() {
   useEffect(() => {
-    // Floating blobs
-    gsap.to("#blob1", {
-      duration: 6,
-      scale: 1.1,
-      yoyo: true,
-      repeat: -1,
-      ease: "sine.inOut",
-    })
-    gsap.to("#blob2", {
-      duration: 8,
-      x: 30,
-      yoyo: true,
-      repeat: -1,
-      ease: "sine.inOut",
-    })
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    // Title fade-in
-    gsap.from(".hero-title", {
-      opacity: 0,
-      y: 50,
-      duration: 1.5,
-      ease: "power3.out",
-    })
-
-    // Subtitle typewriter effect
-    gsap.to(".hero-subtitle", {
-      duration: 3,
-      text: "Crafting premium digital experiences ✨",
-      ease: "none",
-      delay: 1,
-    })
-  }, [])
+    tl.from(".hero-logo", { y: -50, opacity: 0, duration: 1 })
+      .from(".hero-title", { y: 40, opacity: 0, duration: 1 }, "-=0.5")
+      .from(".hero-tagline", { y: 40, opacity: 0, duration: 1 }, "-=0.5")
+      .from(".hero-btn", { scale: 0.8, opacity: 0, duration: 0.8, ease: "back.out(1.7)" }, "-=0.3");
+  }, []);
 
   return (
-    <section className="relative flex items-center justify-center min-h-screen overflow-hidden bg-slate-900">
-      {/* Background SVG */}
-      <svg
-        viewBox="0 0 1200 500"
-        xmlns="http://www.w3.org/2000/svg"
-        className="absolute inset-0 w-full h-full"
-      >
-        <defs>
-          <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#0ea5e9" />
-            <stop offset="100%" stopColor="#6366f1" />
-          </linearGradient>
-        </defs>
-        <rect width="1200" height="500" fill="url(#grad)" />
-        <circle id="blob1" cx="250" cy="150" r="180" fill="#22d3ee" opacity="0.25" />
-        <circle id="blob2" cx="950" cy="350" r="160" fill="#8b5cf6" opacity="0.25" />
-      </svg>
+    <section className="h-screen flex flex-col items-center justify-center bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-600 text-white text-center relative overflow-hidden">
+      {/* Logo */}
+      <img src="/logo.png" alt="Hi3els Labs Logo" className="hero-logo w-24 mb-6 drop-shadow-lg" />
 
-      {/* Hero Content */}
-      <div className="relative z-10 text-center px-4">
-        <h1 className="hero-title text-5xl md:text-7xl font-extrabold text-white drop-shadow-lg">
-          Hi3els Labs
-        </h1>
-        <p className="hero-subtitle mt-4 text-xl md:text-2xl text-slate-200"></p>
-        <button className="mt-8 px-8 py-3 bg-cyan-500 text-black font-bold rounded-lg hover:scale-105 hover:bg-cyan-400 transition">
-          Explore Lab
-        </button>
-      </div>
+      {/* Title */}
+      <h1 className="hero-title text-6xl font-extrabold tracking-tight drop-shadow-xl">
+        Hi3els Labs
+      </h1>
+
+      {/* Tagline */}
+      <p className="hero-tagline mt-4 text-2xl font-light max-w-2xl">
+        Crafting <span className="font-semibold">premium digital experiences</span> ✨
+      </p>
+
+      {/* CTA Button */}
+      <button className="hero-btn mt-8 px-8 py-4 bg-white text-purple-700 font-bold rounded-xl shadow-2xl hover:scale-105 hover:shadow-purple-500/50 transition">
+        Explore Lab
+      </button>
     </section>
-  )
+  );
 }
