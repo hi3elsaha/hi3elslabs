@@ -3,32 +3,31 @@
 import { useEffect } from "react"
 import gsap from "gsap"
 import { TextPlugin } from "gsap/TextPlugin"
+import HeroBanner from "./components/HeroBanner"   // ✅ HeroBanner import সবসময় উপরে
+
 gsap.registerPlugin(TextPlugin)
 
 export default function HomePage() {
   useEffect(() => {
     // Hero text animation
-    gsap.fromTo(".hero-title", {opacity:0, y:50}, {opacity:1, y:0, duration:1.5, ease:"power3.out"})
-    gsap.to(".hero-subtitle", {duration:3, text:"Crafting premium digital experiences ✨", ease:"none", delay:1})
-    // Section reveal
-    gsap.utils.toArray(".section").forEach((sec, i) => {
-      gsap.from(sec, {opacity:0, y:50, duration:1, scrollTrigger:{trigger:sec, start:"top 80%"}})
+    gsap.fromTo(".hero-title", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1.5, ease: "power3.out" })
+    gsap.to(".hero-subtitle", { duration: 3, text: "Crafting premium digital experiences ✨", ease: "none", delay: 1 })
+
+    // Section reveal animation
+    gsap.utils.toArray(".section").forEach((sec) => {
+      gsap.from(sec, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        scrollTrigger: { trigger: sec, start: "top 80%" }
+      })
     })
   }, [])
 
   return (
     <div className="space-y-32">
-      {import HeroBanner from "./components/HeroBanner"}
-      <section className="flex flex-col items-center justify-center min-h-screen text-center">
-        <h1 className="hero-title text-5xl md:text-7xl font-extrabold mb-4 text-cyan-400">
-          Welcome to Hi3els Lab 🚀
-        </h1>
-        <p className="hero-subtitle text-lg md:text-xl text-slate-300 max-w-xl"></p>
-        <img src="/images/banner.jpg" alt="Banner" className="mt-8 rounded-xl shadow-2xl" />
-        <button className="mt-8 px-8 py-3 bg-cyan-500 text-black font-bold rounded-lg hover:scale-105 hover:bg-cyan-400 transition">
-          Explore Lab
-        </button>
-      </section>
+      {/* ✅ Hero Banner এখন সঠিকভাবে বসানো */}
+      <HeroBanner />
 
       {/* About Section */}
       <section id="about" className="section max-w-4xl mx-auto text-center">
