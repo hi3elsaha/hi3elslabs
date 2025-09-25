@@ -18,9 +18,9 @@ export default function HomePage() {
         Welcome to Hi3els Lab 🚀
       </h2>
       <p className="text-lg md:text-xl text-slate-300 max-w-xl">
-        Crafting premium digital experiences with animation, storytelling, and
-        expressive design.
+        Crafting premium digital experiences with animation, storytelling, and expressive design.
       </p>
+      <img src="/images/banner.jpg" alt="Banner" className="mt-6 rounded-lg shadow-lg" />
     </section>
   )
 }
