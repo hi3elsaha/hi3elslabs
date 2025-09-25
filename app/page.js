@@ -3,16 +3,12 @@
 import { useEffect } from "react"
 import gsap from "gsap"
 import { TextPlugin } from "gsap/TextPlugin"
-import HeroBanner from "./components/HeroBanner"   // ✅ HeroBanner import সবসময় উপরে
+import HeroBanner from "./components/HeroBanner"   // ✅ Import এখানে
 
 gsap.registerPlugin(TextPlugin)
 
 export default function HomePage() {
   useEffect(() => {
-    // Hero text animation
-    gsap.fromTo(".hero-title", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1.5, ease: "power3.out" })
-    gsap.to(".hero-subtitle", { duration: 3, text: "Crafting premium digital experiences ✨", ease: "none", delay: 1 })
-
     // Section reveal animation
     gsap.utils.toArray(".section").forEach((sec) => {
       gsap.from(sec, {
@@ -26,14 +22,14 @@ export default function HomePage() {
 
   return (
     <div className="space-y-32">
-      {/* ✅ Hero Banner এখন সঠিকভাবে বসানো */}
+      {/* ✅ Hero Banner */}
       <HeroBanner />
 
       {/* About Section */}
       <section id="about" className="section max-w-4xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-4 text-cyan-300">About Us</h2>
         <p className="text-slate-300 leading-relaxed">
-          Hi3els Lab is a creative digital studio blending storytelling, animation, and technology.  
+          Hi3els Labs is a creative digital studio blending storytelling, animation, and technology.  
           We believe in expressive design that feels alive, memorable, and premium.
         </p>
       </section>
@@ -75,7 +71,7 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="bg-slate-900 py-6 text-center text-slate-400">
-        <p>© {new Date().getFullYear()} Hi3els Lab. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Hi3els Labs. All rights reserved.</p>
       </footer>
     </div>
   )
