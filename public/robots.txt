@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hi3elslabs.pages.dev/sitemap.xml
